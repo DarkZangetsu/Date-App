@@ -11,7 +11,8 @@ export default function DoneStep({ plan, onEdit }) {
 
   const send = async () => {
     if (config.whatsapp) {
-      const url = `https://wa.me/${config.whatsapp}?text=${encodeURIComponent(message)}`
+      // Lien direct (pas wa.me) : la redirection de wa.me abîme les emojis en « ? ».
+      const url = `https://api.whatsapp.com/send?phone=${config.whatsapp}&text=${encodeURIComponent(message)}`
       window.open(url, '_blank', 'noopener')
       return
     }
